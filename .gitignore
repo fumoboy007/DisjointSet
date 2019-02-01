@@ -2,3 +2,5 @@
 /.build
 /Packages
 /*.xcodeproj
+/*.attabench/Package.resolved
+/*.attabench/.build

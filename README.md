@@ -17,6 +17,8 @@ A disjoint-set is like a regular set but with an extra superpower: it can partit
 | `allSubsets()` | `O(n)` |
 | `subset(containing:)` | `O(n)` |
 
+To confirm that the real-world results match the theory, use `DisjointSet.attabench`.
+
 ## API Usage
 
 See `Tests/DisjointSetTests/LeetCodeTests.swift`.
