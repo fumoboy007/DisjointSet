@@ -60,6 +60,22 @@ benchmark.addTask(title: "DisjointSet.contains(_:)") { inserts in
     }
 }
 
+benchmark.addTask(title: "DisjointSet.count(ofSubsetsContaining:)") { inserts in
+    var disjointSet = DisjointSet<Int>()
+    for value in inserts {
+        disjointSet.insert(value,
+                           unioningWith: [value - 1, value + 1])
+    }
+
+    let lookups = Array(0..<inserts.count)
+
+    return { timer in
+        for value in lookups {
+            _ = disjointSet.count(ofSubsetsContaining: [value])
+        }
+    }
+}
+
 benchmark.addTask(title: "DisjointSet.allSubsets()") { inserts in
     var disjointSet = DisjointSet<Int>()
     for value in inserts {

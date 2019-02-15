@@ -14,6 +14,7 @@ A disjoint-set is like a regular set but with an extra superpower: it can partit
 | `count` | `O(1)` |
 | `insert(_:unioningWith:)` | `O(1)` |
 | `contains(_:)` | `O(1)` |
+| `count(ofSubsetsContaining:)` | `O(1)` |
 | `allSubsets()` | `O(n)` |
 | `subset(containing:)` | `O(n)` |
 

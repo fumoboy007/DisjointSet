@@ -52,17 +52,17 @@ final class LeetCodeTests: XCTestCase {
       }
 
       let edges: [UndirectedEdge] = [
-         .init(1, 2),
-         .init(2, 3),
          .init(3, 4),
-         .init(1, 4),
-         .init(1, 5)
+         .init(1, 2),
+         .init(2, 4),
+         .init(3, 5),
+         .init(2, 5)
       ]
 
       var disjointSet = DisjointSet<Int>()
       var edgeToBeRemoved: UndirectedEdge?
       for edge in edges {
-         if disjointSet.contains(edge.u) && disjointSet.contains(edge.v) {
+         if disjointSet.contains(edge.u) && disjointSet.contains(edge.v) && disjointSet.count(ofSubsetsContaining: [edge.u, edge.v]) == 1 {
             edgeToBeRemoved = edge
             break
          }
@@ -72,7 +72,7 @@ final class LeetCodeTests: XCTestCase {
       }
 
       XCTAssertNotNil(edgeToBeRemoved)
-      XCTAssertEqual(edgeToBeRemoved!, .init(1, 4))
+      XCTAssertEqual(edgeToBeRemoved!, .init(2, 5))
    }
 
    static var allTests = [

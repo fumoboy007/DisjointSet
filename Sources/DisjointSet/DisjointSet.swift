@@ -48,6 +48,13 @@ public struct DisjointSet<Element: Hashable> {
       return implementation.contains(member)
    }
 
+   // O(1)
+   public func count<Elements: Sequence>(
+      ofSubsetsContaining members: Elements
+   ) -> Int where Elements.Element == Element {
+      return implementation.count(ofSubsetsContaining: members)
+   }
+
    // O(n)
    public func allSubsets() -> [Set<Element>] {
       return implementation.allSubsets()
@@ -134,6 +141,27 @@ fileprivate extension DisjointSet {
 
       func contains(_ member: Element) -> Bool {
          return memberToSubsetNodeMap[member] != nil
+      }
+
+      func count<Elements: Sequence>(
+         ofSubsetsContaining members: Elements
+      ) -> Int where Elements.Element == Element {
+         var count = 0
+
+         var lastRootNode: SubsetNode?
+         for member in members {
+            if let memberNode = memberToSubsetNodeMap[member] {
+               let rootNode = findRoot(of: memberNode)
+
+               if lastRootNode !== rootNode {
+                  count += 1
+               }
+
+               lastRootNode = rootNode
+            }
+         }
+
+         return count
       }
 
       func allSubsets() -> [Set<Element>] {

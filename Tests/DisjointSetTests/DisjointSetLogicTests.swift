@@ -118,6 +118,9 @@ final class DisjointSetLogicTests: XCTestCase {
 
       XCTAssertEqual(Set(disjointSet.allSubsets()), expectedSubsets)
 
+      XCTAssertEqual(disjointSet.count(ofSubsetsContaining: expectedSubsets.map { $0.first! }),
+                     expectedSubsets.count)
+
       let expectedCount = expectedSubsets.map { $0.count }.reduce(0) { $0 + $1 }
       XCTAssertEqual(disjointSet.count, expectedCount)
 
